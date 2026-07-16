@@ -1,42 +1,50 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Space Exploration</title>
     <link rel="stylesheet" href="Style/style.css">
-
-    <!-- FONT ASEWSOME -->
-        <link rel="stylesheet" href="https://api.fontshare.com/v2/css?f[]=general-sans@300,400,500,600,700&display=swap" />
 </head>
 <body>
-<header>
-<div class="logo">
-        <img src="ASSETS/IMAGES/logo.png" height="40" alt="">
-        <div class="textlogo">
-            <div class="space">Space</div>
-            <div class="exploration">Exploration</div>
+
+
+    <header class="navbar">
+        <div class="nav-container">
+            
+            <!-- Logo -->
+            <div class="logo">
+                <img src="ASSETS/IMAGES/logo.png" height="40" alt="Logo">
+                <div class="logo-text">
+                    <span class="logo-main">Space</span>
+                    <span class="logo-sub">Exploration</span>
+                </div>
+            </div>
+
+            <!-- Navigation Links -->
+            <nav class="nav-menu" id="navMenu">
+                <ul class="nav-links">
+                    <li><a href="#home" class="active">Home</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#missions">Missions</a></li>
+                    <li><a href="#gallery">Gallery</a></li>
+                    <li><a href="#news">News</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+
+          
+            <div class="nav-actions">
+                <button id="themeToggle" class="theme-btn">☼</button>
+                <button id="mobileToggle" class="hamburger">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
+
         </div>
-
-    </div>
-<nav>
-<ul>
-    <li><a href="#">Home</a></li>
-    <li><a href="#">About</a></li>
-    <li><a href="#">Missons</a></li>
-    <li><a href="#">Gallery</a></li>
-     <li><a href="#">News</a></li> 
-     <li><a href="#">Contact</a></li>
-
-</ul>
-</nav>
-<div class="rightnav">
-  <button id="themeToggle" aria-label="Toggle theme">☀︎</button>
-</div>
-</header>
-
-
-
+    </header>
 
     <script src="JS/script.js"></script>
 </body>
