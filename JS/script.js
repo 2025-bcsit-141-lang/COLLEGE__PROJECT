@@ -27,3 +27,29 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 });
+
+// nav section ma before after effect halera interactivity try gareko
+
+ const sections = document.querySelectorAll('section[id]');
+    // sabei nav leko
+    const navLinksAll = document.querySelectorAll('.nav-links a');
+
+    window.addEventListener('scroll', () => {
+        let current = '';
+        
+        // kunchei section ma xa vnera check gareko
+        sections.forEach(section => {
+            const sectionTop = section.offsetTop - 120; // Offset for navbar
+            if (window.scrollY >= sectionTop) {
+                current = section.getAttribute('id');
+            }
+        });
+
+        // active wala css ma gareko before after shift gardina section ma
+        navLinksAll.forEach(link => {
+            link.classList.remove('active');
+            if (link.getAttribute('href') === `#${current}`) {
+                link.classList.add('active');
+            }
+        });
+    });
