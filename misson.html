@@ -5,10 +5,247 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Missions - Space Exploration</title>
     <link rel="stylesheet" href="Style/style.css">
+    <style>
+        /* ============================================
+   MISSIONS PAGE
+   ============================================ */
+.missions-page-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 24px;
+}
+
+.mission-meta {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 12px;
+    padding-top: 12px;
+    border-top: 1px solid var(--border);
+    font-size: 13px;
+    color: var(--text-muted);
+}
+
+.mission-meta span {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+/* ============================================
+   RESPONSIVE - MISSIONS PAGE
+   ============================================ */
+@media (max-width: 1200px) {
+    .missions-page-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+@media (max-width: 992px) {
+    .missions-page-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 576px) {
+    .missions-page-grid {
+        grid-template-columns: 1fr;
+    }
+}
+    </style>
 </head>
 <body>
+
+    <!--  NAVBAR -->
+    <header class="navbar">
+        <div class="nav-container">
+            
+            <!-- Logo -->
+            <div class="logo">
+                <img src="ASSETS/IMAGES/logo.png" height="40" alt="Logo">
+                <div class="logo-text">
+                    <span class="logo-main">Space</span>
+                    <span class="logo-sub">Exploration</span>
+                </div>
+            </div>
+
+            <!-- Navigation Links -->
+            <nav class="nav-menu" id="navMenu">
+                <ul class="nav-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="index.html#about">About</a></li>
+                    <li><a href="mission.html" class="active">Missions</a></li>
+                    <li><a href="gallery.html">Gallery</a></li>
+                    <li><a href="index.html#news">News</a></li>
+                    <li><a href="index.html#contact">Contact</a></li>
+                </ul>
+            </nav>
+
+            <!-- Actions -->
+            <div class="nav-actions">
+                <button id="themeToggle" class="theme-btn">☼</button>
+                <button id="mobileToggle" class="hamburger">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
+
+        </div>
+    </header>
+
+    <!-- MAIN CONTENT -->
+    <main class="page-main">
+        <div class="container">
+            <!-- Page Header -->
+            <div class="page-header">
+                <span class="section-label">Our Missions</span>
+                <h1 class="page-title">Exploring the Unknown.</h1>
+                <p class="page-desc">Current, past, and upcoming missions pushing the boundaries of space exploration.</p>
+            </div>
+
+            <!-- Missions Grid -->
+            <div class="missions-page-grid">
+                <!-- Mission 1 -->
+                <div class="mission-card">
+                    <div class="card-image">
+                        <img src="ASSETS/IMAGES/MISSONS/Lunar_Pathfinder.png" alt="Lunar Pathfinder" />
+                    </div>
+                    <div class="card-body">
+                        <h3 class="card-title">Lunar Pathfinder</h3>
+                        <p class="card-desc">Studying the lunar surface and preparing for future human missions to the Moon.</p>
+                        
+                    </div>
+                </div>
+
+                <!-- Mission 2 -->
+                <div class="mission-card">
+                    <div class="card-image">
+                        <img src="ASSETS/IMAGES/MISSONS/mars.webp" alt="Mars Horizon" />
+                    </div>
+                    <div class="card-body">
+                        <h3 class="card-title">Mars Horizon</h3>
+                        <p class="card-desc">Mapping the Martian surface and studying its atmosphere for potential human settlement.</p>
+                        
+                    </div>
+                </div>
+
+                <!-- Mission 3 -->
+                <div class="mission-card">
+                    <div class="card-image">
+                        <img src="ASSETS/IMAGES/MISSONS/deepspace.webp" alt="Deep Space Observer" />
+                    </div>
+                    <div class="card-body">
+                        <h3 class="card-title">Deep Space Observer</h3>
+                        <p class="card-desc">Observing distant planets and exoplanets to understand the cosmos and find habitable worlds.</p>
+                        
+                    </div>
+                </div>
+
+                <!-- Mission 4 -->
+                <div class="mission-card">
+                    <div class="card-image">
+                        <img src="ASSETS/IMAGES/MISSONS/Beautiful-Earth-planet-asteroid-comet-2560x1920.jpg" alt="Earth Watch" />
+                    </div>
+                    <div class="card-body">
+                        <h3 class="card-title">Earth Watch</h3>
+                        <p class="card-desc">Monitoring Earth's climate, resources, and environment from space to protect our planet.</p>
+                       
+                    </div>
+                </div>
+
+                <!-- Mission 5 -->
+                <div class="mission-card">
+                    <div class="card-image">
+                        <img src="ASSETS/IMAGES/MISSONS/venus.webp" alt="Venus Explorer" />
+                    </div>
+                    <div class="card-body">
+                        <h3 class="card-title">Venus Explorer</h3>
+                        <p class="card-desc">Studying Venus's atmosphere and surface conditions to understand planetary evolution.</p>
+                        
+                    </div>
+                </div>
+
+                <!-- Mission 6 -->
+                <div class="mission-card">
+                    <div class="card-image">
+                        <img src="ASSETS/IMAGES/MISSONS/asteriods.jpg" alt="Asteroid Belt Survey" />
+                    </div>
+                    <div class="card-body">
+                        <h3 class="card-title">Asteroid Belt Survey</h3>
+                        <p class="card-desc">Mapping asteroids in the belt and studying their composition for resource potential.</p>
+                        
+                    </div>
+                </div>
+
+                <!-- Mission 7 -->
+                <div class="mission-card">
+                    <div class="card-image">
+                        <img src="ASSETS/IMAGES/MISSONS/jupiter.png" alt="Jupiter Observer" />
+                    </div>
+                    <div class="card-body">
+                        <h3 class="card-title">Jupiter Observer</h3>
+                        <p class="card-desc">Studying Jupiter's atmosphere, moons, and magnetic field to understand gas giants.</p>
+                        
+                    </div>
+                </div>
+
+                <!-- Mission 8 -->
+                <div class="mission-card">
+                    <div class="card-image">
+                        <img src="ASSETS/IMAGES/MISSONS/corona2.en.jpg" alt="Solar Probe" />
+                    </div>
+                    <div class="card-body">
+                        <h3 class="card-title">Solar Probe</h3>
+                        <p class="card-desc">Studying the Sun's corona and solar winds to better understand space weather.</p>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
    
-    <h1>HELELELELELLELELELEELLEEOEOEOLEOELEOEOE</h1>
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-simple">
+                <!-- Brand -->
+                <div class="footer-brand">
+                    <div class="logo">
+                        <img src="ASSETS/IMAGES/logo.png" height="30" alt="Logo">
+                        <div class="logo-text">
+                            <span class="logo-main">Space</span>
+                            <span class="logo-sub">Exploration</span>
+                        </div>
+                    </div>
+                    <p class="footer-desc">Exploring the universe, one mission at a time.</p>
+                </div>
+
+                <!-- Quick Links -->
+                <div class="footer-links">
+                    <a href="index.html">Home</a>
+                    <a href="index.html#about">About</a>
+                    <a href="mission.html">Missions</a>
+                    <a href="gallery.html">Gallery</a>
+                    <a href="index.html#news">News</a>
+                    <a href="index.html#contact">Contact</a>
+                </div>
+
+                <!-- Social -->
+                <div class="footer-social">
+                    <a href="#">Twitter</a>
+                    <a href="#">Instagram</a>
+                    <a href="#">LinkedIn</a>
+                </div>
+            </div>
+
+            <!-- Bottom bar -->
+            <div class="footer-bottom">
+                <p>&copy; 2026 Space Exploration. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- SCRIPTS -->
     <script src="JS/script.js"></script>
 </body>
 </html>

@@ -54,3 +54,37 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 //form
+document.addEventListener('DOMContentLoaded', function() {
+    const contactForm = document.getElementById('contactForm');
+    
+    if (contactForm) {
+        contactForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Get form values
+            const formData = {
+                id: Date.now(),
+                name: document.getElementById('name').value.trim(),
+                email: document.getElementById('email').value.trim(),
+                subject: document.getElementById('subject').value.trim(),
+                message: document.getElementById('message').value.trim(),
+                timestamp: new Date().toLocaleString()
+            };
+            
+            // Get existing submissions or create new array
+            let submissions = JSON.parse(localStorage.getItem('formSubmissions')) || [];
+            
+            // Add new submission
+            submissions.push(formData);
+            
+            // Save to localStorage
+            localStorage.setItem('formSubmissions', JSON.stringify(submissions));
+            
+            // Show success message
+            alert('✅ Message sent successfully!');
+            
+            // Reset form
+            contactForm.reset();
+        });
+    }
+});
