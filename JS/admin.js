@@ -43,4 +43,43 @@
             const submissions = JSON.parse(localStorage.getItem('formSubmissions')) || [];
             renderSubmissions(submissions);
         }
+        // Render submissions
+        function renderSubmissions(submissions) {
+            const list = document.getElementById('submissionsList');
+            
+            if (!submissions || submissions.length === 0) {
+                list.innerHTML = `
+                    <div class="empty-state">
+                        <div class="icon">—</div>
+                        <h3>no submissions</h3>
+                        <p>form data will appear here</p>
+                    </div>
+                `;
+                return;
+            }
+            
+            const sorted = [...submissions].reverse();
+            
+            list.innerHTML = sorted.map((sub) => {
+                const initials = sub.name ? sub.name.split(' ').map(n => n[0]).join('').toUpperCase() : '?';
+                
+                return `
+                    <div class="submission-card">
+                        <div class="submission-header">
+                            <div class="submission-sender">
+                                <div class="submission-avatar">${initials}</div>
+                                <div>
+                                    <div class="submission-name">${sub.name || 'Anonymous'}</div>
+                                    <div class="submission-email">${sub.email || 'no email'}</div>
+                                </div>
+                            </div>
+                            <div class="submission-time">${sub.timestamp || 'unknown'}</div>
+                        </div>
+                        <div class="submission-subject"><span class="subjection-label">subject</span> ${sub.subject || 'no subject'}</div>
+                        <div class="submission-message">${sub.message || 'no message'}</div>
+                        <div class="submission-id">${sub.id}</div>
+                    </div>
+                `;
+            }).join('');
+        }
         
