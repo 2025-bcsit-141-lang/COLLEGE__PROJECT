@@ -82,4 +82,42 @@
                 `;
             }).join('');
         }
+        // Export
+        function exportSubmissions() {
+            const submissions = JSON.parse(localStorage.getItem('formSubmissions')) || [];
+            
+            if (submissions.length === 0) {
+                alert('no submissions');
+                return;
+            }
+            
+            const jsonStr = JSON.stringify(submissions, null, 2);
+            const blob = new Blob([jsonStr], { type: 'application/json' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `submissions_${new Date().toISOString().split('T')[0]}.json`;
+            a.click();
+            URL.revokeObjectURL(url);
+        }
         
+        // Refresh
+        function refreshSubmissions() {
+            loadSubmissions();
+        }
+        
+        // Clear
+        function clearAllSubmissions() {
+            if (!confirm('delete all?')) return;
+            if (!confirm('final confirmation?')) return;
+            
+            localStorage.removeItem('formSubmissions');
+            loadSubmissions();
+        }
+        
+        // Enter key for login
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Enter' && document.getElementById('loginOverlay').style.display !== 'none') {
+                loginAdmin();
+            }
+        });
