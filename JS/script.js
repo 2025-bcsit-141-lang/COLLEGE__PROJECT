@@ -71,7 +71,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 timestamp: new Date().toLocaleString()
             };
             
-            // Get existing submissions or create new array
+            // Get existing submissions 
             let submissions = JSON.parse(localStorage.getItem('formSubmissions')) || [];
             
             // Add new submission
