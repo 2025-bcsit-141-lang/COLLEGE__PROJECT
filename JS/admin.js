@@ -1,123 +1,187 @@
-        
-        const ADMIN_CREDENTIALS = {
-            username: 'admin',
-            password: 'admin123'
-        };
-        
-        // Check if already logged in
-        if (sessionStorage.getItem('adminLoggedIn') === 'true') {
-            document.getElementById('loginOverlay').style.display = 'none';
-            document.getElementById('adminDashboard').style.display = 'block';
-            loadSubmissions();
-        }
-        
-        // Login
-        function loginAdmin() {
-            const username = document.getElementById('adminUsername').value;
-            const password = document.getElementById('adminPassword').value;
-            const error = document.getElementById('loginError');
-            
-            if (username === ADMIN_CREDENTIALS.username && password === ADMIN_CREDENTIALS.password) {
-                sessionStorage.setItem('adminLoggedIn', 'true');
-                document.getElementById('loginOverlay').style.display = 'none';
-                document.getElementById('adminDashboard').style.display = 'block';
-                loadSubmissions();
-                error.textContent = '';
-            } else {
-                error.textContent = 'invalid credentials';
-                setTimeout(() => { error.textContent = ''; }, 3000);
-            }
-        }
-        
-        // Logout
-        function logoutAdmin() {
-            if (confirm('logout?')) {
-                sessionStorage.removeItem('adminLoggedIn');
-                document.getElementById('loginOverlay').style.display = 'flex';
-                document.getElementById('adminDashboard').style.display = 'none';
-            }
-        }
-        
-        // Load submissions
-        function loadSubmissions() {
-            const submissions = JSON.parse(localStorage.getItem('formSubmissions')) || [];
-            renderSubmissions(submissions);
-        }
-        // Render submissions
-        function renderSubmissions(submissions) {
-            const list = document.getElementById('submissionsList');
-            
-            if (!submissions || submissions.length === 0) {
-                list.innerHTML = `
-                    <div class="empty-state">
-                        <div class="icon">—</div>
-                        <h3>no submissions</h3>
-                        <p>form data will appear here</p>
+// Admin login details
+const adminUser = "admin";
+const adminPass = "admin123";
+
+// Check if admin already logged in
+if (sessionStorage.getItem("adminLoggedIn") === "true") {
+    document.getElementById("loginOverlay").style.display = "none";
+    document.getElementById("adminDashboard").style.display = "block";
+    loadSubmissions();
+}
+
+function loginAdmin() {
+
+    let username = document.getElementById("adminUsername").value;
+    let password = document.getElementById("adminPassword").value;
+    let error = document.getElementById("loginError");
+
+    if (username === adminUser && password === adminPass) {
+
+        sessionStorage.setItem("adminLoggedIn", "true");
+
+        document.getElementById("loginOverlay").style.display = "none";
+        document.getElementById("adminDashboard").style.display = "block";
+
+        error.textContent = "";
+
+        loadSubmissions();
+
+    } else {
+
+        error.textContent = "Invalid Username or Password";
+
+        setTimeout(function () {
+            error.textContent = "";
+        }, 3000);
+
+    }
+}
+
+function logoutAdmin() {
+
+    let ans = confirm("Do you want to logout?");
+
+    if (ans) {
+
+        sessionStorage.removeItem("adminLoggedIn");
+
+        document.getElementById("loginOverlay").style.display = "flex";
+        document.getElementById("adminDashboard").style.display = "none";
+
+    }
+}
+
+// Read data from localStorage
+function loadSubmissions() {
+
+    let data = localStorage.getItem("formSubmissions");
+
+    if (data == null) {
+        renderSubmissions([]);
+    } else {
+        renderSubmissions(JSON.parse(data));
+    }
+
+}
+
+// Show submissions
+function renderSubmissions(data) {
+
+    let list = document.getElementById("submissionsList");
+
+    if (data.length === 0) {
+
+        list.innerHTML = `
+        <div class="empty-state">
+            <div class="icon">-</div>
+            <h3>No Submissions</h3>
+            <p>Nothing has been submitted yet.</p>
+        </div>
+        `;
+
+        return;
+    }
+
+    data.reverse();
+
+    let output = "";
+
+    for (let i = 0; i < data.length; i++) {
+
+        let item = data[i];
+
+        output += `
+        <div class="submission-card">
+
+            <div class="submission-header">
+
+                <div class="submission-sender">
+
+                    <div>
+                        <div class="submission-name">${item.name || "Anonymous"}</div>
+                        <div class="submission-email">${item.email || "No Email"}</div>
                     </div>
-                `;
-                return;
-            }
-            
-            const sorted = [...submissions].reverse();
-            
-            list.innerHTML = sorted.map((sub) => {
-                const initials = sub.name ? sub.name.split(' ').map(n => n[0]).join('').toUpperCase() : '?';
-                
-                return `
-                    <div class="submission-card">
-                        <div class="submission-header">
-                            <div class="submission-sender">
-                                <div class="submission-avatar">${initials}</div>
-                                <div>
-                                    <div class="submission-name">${sub.name || 'Anonymous'}</div>
-                                    <div class="submission-email">${sub.email || 'no email'}</div>
-                                </div>
-                            </div>
-                            <div class="submission-time">${sub.timestamp || 'unknown'}</div>
-                        </div>
-                        <div class="submission-subject"><span class="subjection-label">subject</span> ${sub.subject || 'no subject'}</div>
-                        <div class="submission-message">${sub.message || 'no message'}</div>
-                        <div class="submission-id">${sub.id}</div>
-                    </div>
-                `;
-            }).join('');
-        }
-        // Export
-        function exportSubmissions() {
-            const submissions = JSON.parse(localStorage.getItem('formSubmissions')) || [];
-            
-            if (submissions.length === 0) {
-                alert('no submissions');
-                return;
-            }
-            
-            const jsonStr = JSON.stringify(submissions, null, 2);
-            const blob = new Blob([jsonStr], { type: 'application/json' });
-            const url = URL.createObjectURL(blob);
-            const a = document.createElement('a');
-            a.href = url;
-            a.download = `submissions_${new Date().toISOString().split('T')[0]}.json`;
-            a.click();
-            URL.revokeObjectURL(url);
-        }
-        
-        // Refresh
-        function refreshSubmissions() {
-            loadSubmissions();
-        }
-        
-        // Clear
-        function clearAllSubmissions() {
-            if (!confirm('delete all?')) return;
-            if (!confirm('final confirmation?')) return;
-            
-            localStorage.removeItem('formSubmissions');
-            loadSubmissions();
-        }
-        
-        // Enter key for login
-        document.addEventListener('keydown', function(e) {
-            if (e.key === 'Enter' && document.getElementById('loginOverlay').style.display !== 'none') {
-                loginAdmin();
-            }
-        });
+
+                </div>
+
+                <div class="submission-time">${item.timestamp || "-"}</div>
+
+            </div>
+
+            <div class="submission-subject">
+                <strong>Subject:</strong> ${item.subject || "-"}
+            </div>
+
+            <div class="submission-message">
+                ${item.message || "No Message"}
+            </div>
+
+            <div class="submission-id">
+                ${item.id || "-"}
+            </div>
+
+        </div>
+        `;
+    }
+
+    list.innerHTML = output;
+}
+
+// Download all data
+function exportSubmissions() {
+
+    let data = JSON.parse(localStorage.getItem("formSubmissions")) || [];
+
+    if (data.length === 0) {
+        alert("No submissions found.");
+        return;
+    }
+
+    let file = new Blob([JSON.stringify(data, null, 2)], {
+        type: "application/json"
+    });
+
+    let link = document.createElement("a");
+
+    link.href = URL.createObjectURL(file);
+
+    let today = new Date().toISOString().split("T")[0];
+
+    link.download = "submissions_" + today + ".json";
+
+    link.click();
+
+    URL.revokeObjectURL(link.href);
+
+}
+
+function refreshSubmissions() {
+    loadSubmissions();
+}
+
+function clearAllSubmissions() {
+
+    let first = confirm("Delete all submissions?");
+
+    if (!first) return;
+
+    let second = confirm("This cannot be undone. Continue?");
+
+    if (!second) return;
+
+    localStorage.removeItem("formSubmissions");
+
+    loadSubmissions();
+
+}
+
+// Login when Enter key is pressed
+document.addEventListener("keydown", function (event) {
+
+    let loginBox = document.getElementById("loginOverlay");
+
+    if (event.key === "Enter" && loginBox.style.display !== "none") {
+        loginAdmin();
+    }
+
+});
