@@ -54,43 +54,71 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
     //image slider 
-
 const newsGrid = document.querySelector(".news-grid");
 const newsCards = document.querySelectorAll(".news-card");
 const prevBtn = document.getElementById("prevBtn");
 const nextBtn = document.getElementById("nextBtn");
 
-const cardsPerPage = 3;
-const totalPages = Math.ceil(newsCards.length / cardsPerPage);
-
 let currentPage = 0;
+let cardsPerPage;
+let totalPages;
+
+function updateSettings() {
+
+    if (window.innerWidth <= 768) {
+        cardsPerPage = 1;
+    }
+    else if (window.innerWidth <= 992) {
+        cardsPerPage = 2;
+    }
+    else {
+        cardsPerPage = 3;
+    }
+
+    totalPages = Math.ceil(newsCards.length / cardsPerPage);
+
+    if (currentPage >= totalPages) {
+        currentPage = totalPages - 1;
+    }
+
+    updateSlider();
+}
 
 function updateSlider() {
+
     const pageWidth = newsGrid.parentElement.offsetWidth;
     newsGrid.style.transform = `translateX(-${currentPage * pageWidth}px)`;
+
 }
 
 nextBtn.addEventListener("click", () => {
-    if (currentPage < totalPages - 1) {
-        currentPage++;
-    } else {
-        currentPage = 0; 
+
+    currentPage++;
+
+    if (currentPage >= totalPages) {
+        currentPage = 0;
     }
 
     updateSlider();
+
 });
 
 prevBtn.addEventListener("click", () => {
-    if (currentPage > 0) {
-        currentPage--;
-    } else {
-        currentPage = totalPages - 1; 
+
+    currentPage--;
+
+    if (currentPage < 0) {
+        currentPage = totalPages - 1;
     }
 
     updateSlider();
+
 });
 
-updateSlider();
+window.addEventListener("resize", updateSettings);
+
+updateSettings();
+
     
 //form
 document.addEventListener('DOMContentLoaded', function() {
