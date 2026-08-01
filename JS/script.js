@@ -26,7 +26,7 @@ document.addEventListener('DOMContentLoaded', () => {
             navLinks.classList.remove('active');
         });
     });
-});
+
 
 // nav section ma before after effect halera interactivity try gareko
 
@@ -48,15 +48,16 @@ document.addEventListener('DOMContentLoaded', () => {
         // active wala css ma gareko before after shift gardina section ma
         navLinksAll.forEach(link => {
             link.classList.remove('active');
-            if (link.getAttribute('href') === `#${current}`) {
+            if (link.getAttribute('href') == `#${current}`) {
                 link.classList.add('active');
             }
         });
     });
-    
+
     //image slider 
 
     const newsWrapper = document.querySelector(".news-wrapper");
+    
 const prevBtn = document.getElementById("prevBtn");
 const nextBtn = document.getElementById("nextBtn");
 
@@ -75,10 +76,10 @@ prevBtn.addEventListener("click", () => {
 });
     
 //form
-document.addEventListener('DOMContentLoaded', function() {
+
     const contactForm = document.getElementById('contactForm');
     
-    if (contactForm) {
+   
         contactForm.addEventListener('submit', function(e) {
             e.preventDefault();
             
@@ -107,5 +108,6 @@ document.addEventListener('DOMContentLoaded', function() {
             // Reset form
             contactForm.reset();
         });
-    }
+   
+
 });

@@ -51,6 +51,17 @@ function logoutAdmin() {
     }
 }
 
+// Login when Enter key is pressed
+document.addEventListener("keydown", function (event) {
+
+    let loginBox = document.getElementById("loginOverlay");
+
+    if (event.key === "Enter" && loginBox.style.display !== "none") {
+        loginAdmin();
+    }
+
+});
+
 // Read data from localStorage
 function loadSubmissions() {
 
@@ -127,33 +138,6 @@ function renderSubmissions(data) {
     list.innerHTML = output;
 }
 
-// Download all data
-function exportSubmissions() {
-
-    let data = JSON.parse(localStorage.getItem("formSubmissions")) || [];
-
-    if (data.length === 0) {
-        alert("No submissions found.");
-        return;
-    }
-
-    let file = new Blob([JSON.stringify(data, null, 2)], {
-        type: "application/json"
-    });
-
-    let link = document.createElement("a");
-
-    link.href = URL.createObjectURL(file);
-
-    let today = new Date().toISOString().split("T")[0];
-
-    link.download = "submissions_" + today + ".json";
-
-    link.click();
-
-    URL.revokeObjectURL(link.href);
-
-}
 
 function refreshSubmissions() {
     loadSubmissions();
@@ -174,14 +158,3 @@ function clearAllSubmissions() {
     loadSubmissions();
 
 }
-
-// Login when Enter key is pressed
-document.addEventListener("keydown", function (event) {
-
-    let loginBox = document.getElementById("loginOverlay");
-
-    if (event.key === "Enter" && loginBox.style.display !== "none") {
-        loginAdmin();
-    }
-
-});
