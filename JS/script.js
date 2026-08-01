@@ -53,6 +53,7 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     });
+    
     //image slider 
 
     const newsWrapper = document.querySelector(".news-wrapper");
