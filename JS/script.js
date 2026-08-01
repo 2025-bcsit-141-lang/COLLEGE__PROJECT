@@ -53,6 +53,45 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     });
+    //image slider 
+
+const newsGrid = document.querySelector(".news-grid");
+const newsCards = document.querySelectorAll(".news-card");
+const prevBtn = document.getElementById("prevBtn");
+const nextBtn = document.getElementById("nextBtn");
+
+const cardsPerPage = 3;
+const totalPages = Math.ceil(newsCards.length / cardsPerPage);
+
+let currentPage = 0;
+
+function updateSlider() {
+    const pageWidth = newsGrid.parentElement.offsetWidth;
+    newsGrid.style.transform = `translateX(-${currentPage * pageWidth}px)`;
+}
+
+nextBtn.addEventListener("click", () => {
+    if (currentPage < totalPages - 1) {
+        currentPage++;
+    } else {
+        currentPage = 0; 
+    }
+
+    updateSlider();
+});
+
+prevBtn.addEventListener("click", () => {
+    if (currentPage > 0) {
+        currentPage--;
+    } else {
+        currentPage = totalPages - 1; 
+    }
+
+    updateSlider();
+});
+
+updateSlider();
+    
 //form
 document.addEventListener('DOMContentLoaded', function() {
     const contactForm = document.getElementById('contactForm');

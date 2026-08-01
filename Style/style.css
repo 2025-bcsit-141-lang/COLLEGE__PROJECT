@@ -126,9 +126,7 @@ html[data-theme="light"]{
 }
 
 .nav-menu ul {
-      font-family: "Orbitron", sans-serif;
-  font-optical-sizing: auto;
-
+   
   font-style: normal;
     display: flex;
     list-style: none;
@@ -753,6 +751,35 @@ letter-spacing: -0.01em;
     padding-left: 4px;
 }
 
+/* news ko image slider paxi haleko */
+.news-slider{
+    display:flex;
+    align-items:center;
+    gap:20px;
+}
+
+.news-wrapper{
+    overflow:hidden;
+    width:100%;
+}
+
+.news-grid{
+    display:flex;
+    gap:24px;
+    transition:.4s;
+}
+
+.news-card{
+    min-width:calc((100% - 48px)/3);
+}
+.news-wrapper{
+    overflow:hidden;
+    width:100%;
+}
+
+.news-card{
+    flex:0 0 calc((100% - 48px)/3);
+}
 /* news responsiveness */
 @media (max-width: 992px) {
     .news-grid {

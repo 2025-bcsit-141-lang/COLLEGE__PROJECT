@@ -1,6 +1,6 @@
 // Admin login details
-const adminUser = "admin";
-const adminPass = "admin123";
+const adminUser = "darpan";
+const adminPass = "darpan123";
 
 // Check if admin already logged in
 if (sessionStorage.getItem("adminLoggedIn") === "true") {
@@ -63,7 +63,7 @@ function loadSubmissions() {
     }
 
 }
-
+ 
 // Show submissions
 function renderSubmissions(data) {
 
