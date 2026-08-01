@@ -15,7 +15,7 @@ function loginAdmin() {
     let password = document.getElementById("adminPassword").value;
     let error = document.getElementById("loginError");
 
-    if (username === adminUser && password === adminPass) {
+    if (username == adminUser && password == adminPass) {
 
         sessionStorage.setItem("adminLoggedIn", "true");
 
@@ -51,16 +51,6 @@ function logoutAdmin() {
     }
 }
 
-// Login when Enter key is pressed
-document.addEventListener("keydown", function (event) {
-
-    let loginBox = document.getElementById("loginOverlay");
-
-    if (event.key === "Enter" && loginBox.style.display !== "none") {
-        loginAdmin();
-    }
-
-});
 
 // Read data from localStorage
 function loadSubmissions() {
