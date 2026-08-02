@@ -357,6 +357,8 @@ letter-spacing: -0.01em;
         top: 22%;
         left: 12%;
         gap: 6rem;
+     
+
     }
 
     .hero-title{
@@ -425,7 +427,7 @@ letter-spacing: -0.01em;
 
 .container {
     font-family: "Open Sans", sans-serif;
-    width: min(92%, 1200px);
+    width: min(94%, 1400px);
     margin: 0 auto;
 
 }
