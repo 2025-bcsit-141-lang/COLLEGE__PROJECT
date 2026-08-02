@@ -3,14 +3,14 @@
 /* lastica */
 @font-face {
     font-family: 'latiska';
-    src: url('ASSETS/FONTS/FontsFree-Net-Lastica.ttf');
+    src: url('../ASSETS/FONTS/FontsFree-Net-Lastica.ttf');
     font-weight: normal;
     font-style: normal;
 }
 /* monument font */
 @font-face {
     font-family: 'monument';
-    src: url('ASSETS/FONTS/MonumentExtended-Regular.otf');
+    src: url('../ASSETS/FONTS/MonumentExtended-Regular.otf');
     font-weight: 100;
     font-style: normal;
 }
