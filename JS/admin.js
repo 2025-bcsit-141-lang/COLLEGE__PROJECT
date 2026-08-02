@@ -3,7 +3,7 @@ const adminUser = "darpan";
 const adminPass = "darpan123";
 
 // Check if admin already logged in
-if (sessionStorage.getItem("adminLoggedIn") === "true") {
+if (sessionStorage.getItem("adminLoggedIn") == "true") {
     document.getElementById("loginOverlay").style.display = "none";
     document.getElementById("adminDashboard").style.display = "block";
     loadSubmissions();
@@ -30,10 +30,9 @@ function loginAdmin() {
 
         error.textContent = "Invalid Username or Password";
 
-        setTimeout(function () {
+        setTimeout(()=> {
             error.textContent = "";
         }, 3000);
-
     }
 }
 

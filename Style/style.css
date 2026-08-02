@@ -411,6 +411,8 @@ letter-spacing: -0.01em;
     .btn-primaryherobtn{
         width: 100%;
         max-width: 250px;
+        
+      text-align: center;
     }
 
 }
@@ -752,6 +754,7 @@ letter-spacing: -0.01em;
     gap:20px;
 }
 
+
 .news-wrapper{
     overflow:hidden;
     width:100%;
@@ -762,7 +765,27 @@ letter-spacing: -0.01em;
     gap:24px;
     transition:.4s;
 }
+.slider-btn{
+    width:48px;
+    height:48px;
+    border:none;
+    border-radius:50%;
+    background:var(--bg-nav);
+    border:1px solid var(--border);
+    color:var(--text-color);
+    font-size:22px;
+    cursor:pointer;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    transition:all .3s ease;
+}
 
+.slider-btn:hover{
+    background:var(--accent);
+    color:var(--bg-color);
+    transform:scale(1.08);
+}
 
 
 .news-card{

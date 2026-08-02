@@ -64,10 +64,12 @@ const nextBtn = document.getElementById("nextBtn");
 newsWrapper.addEventListener("wheel", (e) => {
     e.preventDefault();
     newsWrapper.scrollLeft += e.deltaY;
+   
 });
 
 nextBtn.addEventListener("click", () => {
     newsWrapper.scrollLeft += newsWrapper.clientWidth;
+   
     
 });
 
